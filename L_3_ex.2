@@ -1,0 +1,41 @@
+# 2) С клавиатуры вводятся целые числа. Признак конца ввода — ноль.
+#    Определить число, следующее за последним из введённых минимальных значений.
+n = 1
+minimum_n = 9999999999
+minimum_n_1 = 9999999999
+flag_stop_program = False
+while flag_stop_program != True:
+    n = int(input())
+    if n != 0:
+        if minimum_n_1 > n:
+            minimum_n = n
+            minimum_n, minimum_n_1 = minimum_n_1, minimum_n
+        elif minimum_n > n:
+            minimum_n = n
+    elif n == 0:
+        flag_stop_program = True
+print(minimum_n)
+
+# У меня вопрос по этому заданию. Я написал программу так, чтобы она выводила воторое минимальное значение после самого минимального.
+# Если не правильно понял, то переделаю сейчас так:
+
+n = 1
+minimum_n = 9999999999
+answer = 1
+flag_stop_program = False
+flag_the_next_number_after_the_minimum = False
+while flag_stop_program != True:
+    n = int(input())
+    if flag_the_next_number_after_the_minimum == True:
+        answer = n
+        flag_the_next_number_after_the_minimum = False
+    if n != 0:
+        if minimum_n > n:
+            minimum_n = n
+            flag_the_next_number_after_the_minimum = True
+    elif n == 0:
+        flag_stop_program = True
+print(answer)
+
+# В данном варианте, вводятся числа и выводится число, которое по порядку ввода идет за минимальным числом при вводе.
+# То есть, при вводе: 1 2 3 -12 -14 7 8, выведет 7.
