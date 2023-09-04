@@ -1,0 +1,9 @@
+# 3) Дано целое число n, удовлетворяющее условию 0 < |n| <= 2 * 10 ** 9
+#  Найти максимальную цифру в записи этого числа.
+
+n = input()
+answer = 0
+for i in range(len(n)):
+    if int(n[i]) > answer:
+        answer = int(n[i])
+print(answer)
