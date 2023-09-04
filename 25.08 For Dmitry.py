@@ -20,32 +20,28 @@ print(answer)
 
  2) С клавиатуры вводятся целые числа. Признак конца ввода — ноль.
     Определить число, следующее за последним из введённых минимальных значений.
-min_n_1 = 9999999999
+min_n = 9999999999
 answer = 0
-f_answer = False
+isLastNMin = False
 
 def error_checking(number):
-    global n
     while True:
-        if number.isdigit() != True:
+        if number[1::].isdigit() != True:
             print('ОШИБКА! Введите целое число!')
             number = input()
         else:
-            n = int(number)
-            return n
+            return int(number)
 
 while True:
-    n = input()
-    error_checking(n)
+    n = error_checking(input())
     if n != 0:
-        if f_answer == True:
+        if not f_answer:
             answer = n
-
-        if min_n_1 > n:
-            min_n_1 = n
-            f_answer = True
+        if min_n > n:
+            min_n = n
+            isLastNMin = True
         else:
-            f_answer = False
+            isLastNMin = False
     elif n == 0:
         break
 print(answer)
@@ -60,10 +56,12 @@ def error_checking(n):
             print('ОШИБКА! Введите целое число!')
             n = input()
         else:
-            return n
-
+            if int(n) > 2 * 10 ** 9:
+                print('ОШИБКА! Число не должно быть больше 2 * 10 ** 9!')
+                n = input()
+            else:
+                return n
 number = error_checking(input())
-
 answer = int(number[0])
 for i in range(1, len(number)):
     i_n = int(number[i])
