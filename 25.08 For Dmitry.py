@@ -71,15 +71,13 @@ print(answer)
 
 
 # 4) Определить, является ли данное натуральное число простым числом.
+
+answer = False
 n = int(input())
-number_of_divisors = 0
-for i in range(1, n + 1):
+for i in range(2, int(n ** 0.5) + 1):
     if n % i == 0:
-        number_of_divisors += 1
-if number_of_divisors == 2:
-    print('YES')
-else:
-    print("NO")
+        answer = True
+print('YES' if not answer else 'NO')
 
 
 # 5) Даны натуральные числа a и b. Определить, могут ли эти числа быть соседними
