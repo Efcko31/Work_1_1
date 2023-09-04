@@ -53,10 +53,20 @@ print(answer)
 
 # 3) Дано целое число n, удовлетворяющее условию 0 < |n| <= 2 * 10 ** 9
 #  Найти максимальную цифру в записи этого числа.
-n = input()
-answer = 0
-for i in range(len(n)):
-    i_n = int(n[i])
+
+def error_checking(n):
+    while True:
+        if n.isdigit() != True:
+            print('ОШИБКА! Введите целое число!')
+            n = input()
+        else:
+            return n
+
+number = error_checking(input())
+
+answer = int(number[0])
+for i in range(1, len(number)):
+    i_n = int(number[i])
     if i_n > answer:
         answer = i_n
 print(answer)
