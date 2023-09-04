@@ -6,57 +6,49 @@ import math
 # 1) Найти все простые делители данного натурального числа
 n = int(input())
 answer = []
-for i in range(1, n + 1):
-    if n % i == 0:
-        total_answer = 0
-        for j in range(1, i + 1):
-            if i % j == 0:
-                total_answer += 1
-        if total_answer == 2:
-            answer.append(i)
-print(*answer)
+d = 2
+while d * d <= n:
+    if n % d == 0:
+        answer.append(d)
+        n //= d
+    else:
+        d += 1
+if n > 1:
+    answer.append(n)
+print(answer)
 
 
  2) С клавиатуры вводятся целые числа. Признак конца ввода — ноль.
     Определить число, следующее за последним из введённых минимальных значений.
-n = 1
-minimum_n = 9999999999
-minimum_n_1 = 9999999999
-flag_stop_program = False
-while flag_stop_program != True:
-    n = int(input())
-    if n != 0:
-        if minimum_n_1 > n:
-            minimum_n = n
-            minimum_n, minimum_n_1 = minimum_n_1, minimum_n
-        elif minimum_n > n:
-            minimum_n = n
-    elif n == 0:
-        flag_stop_program = True
-print(minimum_n)
+min_n_1 = 9999999999
+answer = 0
+f_answer = False
 
-# У меня вопрос по этому заданию. Я написал программу так, чтобы она выводила воторое минимальное значение после самого минимального.
-# Если не правильно понял, то переделаю сейчас так:
+def error_checking(number):
+    global n
+    while True:
+        if number.isdigit() != True:
+            print('ОШИБКА! Введите целое число!')
+            number = input()
+        else:
+            n = int(number)
+            return n
 
-n = 1
-minimum_n = 9999999999
-answer = 1
-flag_stop_program = False
-flag_the_next_number_after_the_minimum = False
-while flag_stop_program != True:
-    n = int(input())
-    if flag_the_next_number_after_the_minimum == True:
-        answer = n
-        flag_the_next_number_after_the_minimum = False
+while True:
+    n = input()
+    error_checking(n)
     if n != 0:
-        if minimum_n > n:
-            minimum_n = n
-            flag_the_next_number_after_the_minimum = True
+        if f_answer == True:
+            answer = n
+
+        if min_n_1 > n:
+            min_n_1 = n
+            f_answer = True
+        else:
+            f_answer = False
     elif n == 0:
-        flag_stop_program = True
+        break
 print(answer)
-# В данном варианте, вводятся числа и выводится число, которое по порядку ввода идет за минимальным числом при вводе.
-# То есть, при вводе: 1 2 3 -12 -14 7 8, выведет 7.
 
 
 # 3) Дано целое число n, удовлетворяющее условию 0 < |n| <= 2 * 10 ** 9
@@ -64,8 +56,9 @@ print(answer)
 n = input()
 answer = 0
 for i in range(len(n)):
-    if int(n[i]) > answer:
-        answer = int(n[i])
+    i_n = int(n[i])
+    if i_n > answer:
+        answer = i_n
 print(answer)
 
 
