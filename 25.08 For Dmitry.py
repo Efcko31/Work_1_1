@@ -120,20 +120,26 @@ else:
 
 # 7) С клавиатуры вводятся символы. Признак конца ввода — точка. Определить максимальную длину
 #    подпоследовательности одинаковых следующих друг за другом символов.
-
-symbol_users = list(input())
+list_symbol = []
 total_symbols = 0
 maximum_symbols = 0
-for i in range(1, len(symbol_users)):
-    if symbol_users[i] != '.':
-        if symbol_users[i] == symbol_users[i - 1]:
-            total_symbols += 1
-        else:
-            if maximum_symbols < total_symbols + 1:
-                maximum_symbols = total_symbols + 1
-            total_symbols = 0
-    else:
+while True:
+    symbols = input()
+    if '.' in symbols:
         break
+    else:
+        if len(symbols) == 1:
+            list_symbol.append(symbols)
+        else:
+            print("Ошибка! Введите 1 символ!")
+
+for i in range(1, len(list_symbol)):
+    if list_symbol[i] == list_symbol[i - 1]:
+        total_symbols += 1
+    else:
+        if maximum_symbols < total_symbols + 1:
+            maximum_symbols = total_symbols + 1
+        total_symbols = 0
 if maximum_symbols < total_symbols + 1:
     maximum_symbols = total_symbols + 1
 print(maximum_symbols)
