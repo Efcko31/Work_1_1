@@ -150,18 +150,32 @@ print(maximum_symbols)
 
 # 9) С клавиатуры вводятся целые числа. Признак конца ввода — ноль.
 # Определить число, предшествующее первому из введённых максимальных значений.
-
-symbol_users = list(input())
-maximum_number = int(symbol_users[0])
+list_symbols = []
 flag_stop = 0
 answer = 0
-for i in range(1, len(symbol_users)):
-    if int(symbol_users[i]) != flag_stop:
-        if maximum_number < int(symbol_users[i]):
-            maximum_number = int(symbol_users[i])
-            answer = symbol_users[i - 1]
-    else:
+
+def error_checking(n):
+    while True:
+        if not n.isdigit():
+            if not n[1::].isdigit():
+                print('ОШИБКА! Введите целое число!')
+                n = input()
+            else:
+                return int(n)
+        else:
+            return int(n)
+while True:
+    symbols = error_checking(input())
+    if symbols == 0:
         break
+    else:
+        list_symbols.append(symbols)
+
+maximum_number = int(list_symbols[0])
+for i in range(1, len(list_symbols)):
+    if maximum_number < int(list_symbols[i]):
+        maximum_number = int(list_symbols[i])
+        answer = list_symbols[i - 1]
 print(answer)
 
 # 10) Дано целое число n, удовлетворяющее условию 0 < |n| <= 2 * 10 ** 9
