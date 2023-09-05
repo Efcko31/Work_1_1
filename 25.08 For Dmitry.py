@@ -181,11 +181,19 @@ print(answer)
 # 10) Дано целое число n, удовлетворяющее условию 0 < |n| <= 2 * 10 ** 9
 # Найти максимальную цифру в записи этого числа.
 
-number = list(input())
-answer = 1
-for i in range(len(number)):
-    if int(number[i]) != 0:
-        answer *= int(number[i])
+def error_checking(n):
+    while True:
+        if n.isdigit():
+            if int(n) < 2 * 10 ** 9 and int(n) > 0:
+                return list(n)
+            else:
+                print("ОШИБКА! Условие: 0 < |n| <= 2 * 10 ** 9 !!! ")
+                n = input()
+number = error_checking(input())
+answer = number[0]
+for i in range(1, len(number)):
+    if answer < number[i]:
+        answer = number[i]
 print(answer)
 
 # 11) С клавиатуры вводятся символы. Признак конца ввода — точка. Определить символ,
