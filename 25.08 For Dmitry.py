@@ -114,27 +114,23 @@ else:
 # 7) С клавиатуры вводятся символы. Признак конца ввода — точка. Определить максимальную длину
 #    подпоследовательности одинаковых следующих друг за другом символов.
 list_symbol = []
-total_symbols = 0
+total_symbols = 1
 maximum_symbols = 0
-while True:
-    symbols = input()
-    if '.' in symbols:
-        break
-    else:
-        if len(symbols) == 1:
-            list_symbol.append(symbols)
-        else:
-            print("Ошибка! Введите 1 символ!")
+symbol_1 = input()
 
-for i in range(1, len(list_symbol)):
-    if list_symbol[i] == list_symbol[i - 1]:
-        total_symbols += 1
+while '.' not in symbol_1:
+    symbol_2 = input()
+    if len(symbol_2) == 1:
+        if symbol_2 == symbol_1:
+            total_symbols += 1
+        else:
+            if maximum_symbols < total_symbols:
+                maximum_symbols = total_symbols
+            total_symbols = 1
+        symbol_1 = symbol_2
     else:
-        if maximum_symbols < total_symbols + 1:
-            maximum_symbols = total_symbols + 1
-        total_symbols = 0
-if maximum_symbols < total_symbols + 1:
-    maximum_symbols = total_symbols + 1
+        print("Ошибка! Введите 1 символ!")
+
 print(maximum_symbols)
 
 
