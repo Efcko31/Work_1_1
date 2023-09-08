@@ -90,21 +90,15 @@ number_1 = 1
 number_2 = 1
 answer = False
 while number_2 < b:
-    fibonacci_numbers = number_1 + number_2
+    number_3 = number_1 + number_2
     number_1, number_2 = number_2, number_1
-    fibonacci_numbers, number_2 = number_2, fibonacci_numbers
-    if number_2 == a:
-        if number_1 + number_2 == b:
-            answer = True
-            break
-        else:
-            answer = False
-            break
-if answer == True:
+    number_3, number_2 = number_2, number_3
+
+if number_1 + number_3 == b:
     print('Yes')
+
 else:
     print('NO')
-
 
 # 6) Установить, является ли данное натуральное число n совершенным (равным сумме
 # всех его делителей, меньших n)
