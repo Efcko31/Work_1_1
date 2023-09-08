@@ -168,7 +168,7 @@ print(previous_number)
 # Найти максимальную цифру в записи этого числа.
 
 def error_checking(n):
-    while True:
+    while n:
         if n.isdigit():
             if int(n) < 2 * 10 ** 9 and int(n) > 0:
                 return list(n)
