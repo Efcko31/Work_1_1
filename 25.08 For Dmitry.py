@@ -185,20 +185,18 @@ print(answer)
 # 11) С клавиатуры вводятся символы. Признак конца ввода — точка. Определить символ,
 # следующий за последним вхождением цифры.
 
-user_symbol = 0
+user_symbol = input()
 answer = 'NOTHING'
 flag_user_symbol = 'NOTHING'
+
 while user_symbol != '.':
-    user_symbol = input()
-    if user_symbol not in '1234567890.':
-        flag_user_symbol = user_symbol
-
-    if user_symbol == '.':
-        print(answer)
-
-    elif user_symbol in '1234567890':
-        answer = flag_user_symbol
     flag_user_symbol = user_symbol
+    user_symbol = input()
+    if not user_symbol.isdigit():
+        flag_user_symbol = user_symbol
+    elif user_symbol.isdigit():
+        answer = flag_user_symbol
+print(answer)
 
 
 # 12) С клавиатуры вводятся целые числа. Признак конца ввода — ноль.
