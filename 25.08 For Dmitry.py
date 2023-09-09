@@ -204,49 +204,69 @@ print(answer)
 
 user_number = 1
 total_number_for_answer = 0
-flag_negative_number = False
+counter_on_off = True
 while user_number != 0:
+    
     user_number = int(input())
-    if flag_negative_number == True and user_number < 0:
-        flag_negative_number = False
+    if not counter_on_off and user_number < 0:
+        counter_on_off = True
         total_number_for_answer = 0
-    if user_number < 0:
-        flag_negative_number = True
 
-    if flag_negative_number == True:
+    if user_number < 0:
+        counter_on_off = False
+
+    if not counter_on_off:
         if user_number % 2 != 0 and user_number > 0:
             total_number_for_answer += 1
 
 print(total_number_for_answer)
 
-
 # 13) Дано целое неотрицательное число n, удовлетворяющее условию 0 < |n| <= 2 * 10 ** 9 Определить количество нулей,
 # которыми заканчивается запись числа n. Вывести n в виде a*10^k, где a — целое, не содержащее нуля в конце записи числа;
 # k — количество нулей в конце записи числа n. Например, 130 000 = 13*10^4.
 
-number = list(input())
+def error_checking(n):
+    while n:
+        if n.isdigit():
+            if int(n) < 2 * 10 ** 9 and int(n) > 0:
+                return list(n)
+            else:
+                print("ОШИБКА! Условие: 0 < |n| <= 2 * 10 ** 9 !!! ")
+                n = input()
+number = list(error_checking(input()))
 number = number[::-1]
-flag_ziro = True
+flag_zero = True
 a = []
 k = 0
 for i in range(len(number)):
-    if number[i] == '0' and flag_ziro == True:
+    if number[i] == '0' and flag_zero:
         k += 1
     else:
         a.append(number[i])
-        flag_ziro = False
+        flag_zero = False
 a = a[::-1]
 print(*a, ' * 10 ^ ', k, sep='')
 
 # 14) С клавиатуры вводятся целые числа. Признак конца ввода — ноль.
 # Определить число, следующее за последним из отрицательных чисел.
+def error_checking(n):
+    while n:
+        if not n.isdigit():
+            if not n[1::].isdigit():
+                print('ОШИБКА! Введите целое число!')
+                n = input()
+            else:
+                return int(n)
+        else:
+            return int(n)
 
 user_number = 1
 flag_negative_number = False
-answer_for_number = 0
+answer_for_number = 'NOTHING'
+
 while user_number != 0:
-    user_number = int(input())
-    if flag_negative_number == True:
+    user_number = error_checking(input())
+    if flag_negative_number:
         answer_for_number = user_number
         flag_negative_number = False
     if user_number < 0:
@@ -257,7 +277,16 @@ print(answer_for_number)
 # 15) Дано целое число n, удовлетворяющее условию 0 < |n| <= 2 * 10 ** 9
 #     Найти сумму цифр числа n.
 
-number = list(input())
+def error_checking(n):
+    while n:
+        if n.isdigit():
+            if int(n) < 2 * 10 ** 9 and int(n) > 0:
+                return list(n)
+            else:
+                print("ОШИБКА! Условие: 0 < |n| <= 2 * 10 ** 9 !!! ")
+                n = input()
+
+number = error_checking(input())
 sum_number = 0
 for i in range(len(number)):
     sum_number += int(number[i])
@@ -265,49 +294,82 @@ print(sum_number)
 
 # 16) С клавиатуры вводятся вещественные числа. Признак конца ввода — ноль.
 # Определить, является ли вводимая последовательность упорядоченной по невозрастанию или по неубыванию.
-
-user_number = 1
-list_user_number = []
+def error_checking(n):
+    while n:
+        if not n.isdigit():
+            c = n[1::].split('.')
+            if len(c) == 2:
+                c = c[0] + c[1]
+                if not c.isdigit():
+                    print('ОШИБКА! Введите вещественное число!')
+                    n = input()
+                else:
+                    return float(n)
+            else:
+                print('ОШИБКА! Введите вещественное число!')
+                n = input()
+        else:
+            return float(n)
+flag_descending = False
+flag_ascending = False
+user_number = error_checking(input())
+previous_number = user_number
 while user_number != 0:
-    user_number = int(input())
+    user_number = error_checking(input())
     if user_number != 0:
-        list_user_number.append(user_number)
-total_numbers_in_descending_order = 0 # убывание
-total_ascending_numbers = 0
-
-for i in range(1, len(list_user_number)):
-    if list_user_number[i] > list_user_number[i - 1]:
-        total_ascending_numbers += 1
-    elif list_user_number[i] < list_user_number[i - 1]:
-        total_numbers_in_descending_order += 1
-
-if total_ascending_numbers + 1 == len(list_user_number) and total_numbers_in_descending_order == 0:
-    print('Упорядоченна по неубыванию')
-elif total_numbers_in_descending_order + 1 == len(list_user_number) and total_ascending_numbers == 0:
-    print('Упорядоченна по невозврастанию')
+        if previous_number < user_number:
+            flag_ascending = True
+        elif previous_number > user_number:
+            flag_descending = True
+    previous_number = user_number
+if flag_ascending + flag_descending != 2:
+    if flag_ascending:
+        print('Упорядоченна по неубыванию')
+    elif flag_descending:
+        print('Упорядоченна по невозврастанию')
 else:
     print('Никак не упорядоченна')
 
 
 # 17) С клавиатуры вводятся вещественные числа. Признак конца ввода — ноль.
 # Определить, является ли вводимая последовательность арифметической прогрессией.
+def error_checking(n):
+    while n:
+        if not n.isdigit():
+            c = n[1::].split('.')
+            if len(c) == 2:
+                c = c[0] + c[1]
+                if not c.isdigit():
+                    print('ОШИБКА! Введите вещественное число!')
+                    n = input()
+                else:
+                    return float(n)
+            else:
+                print('ОШИБКА! Введите вещественное число!')
+                n = input()
+        else:
+            return float(n)
 
 user_number = 1
-first_number = int(input())
-second_number = int(input())
+first_number = error_checking(input())
+second_number = error_checking(input())
 difference = first_number - second_number
 flag_arithmetic_progression = True
+
 while user_number != 0:
-    user_number = int(input())
+    user_number = error_checking(input())
     if user_number != 0:
         first_number = user_number
         first_number, second_number = second_number, first_number
         if first_number - second_number != difference:
             flag_arithmetic_progression = False
-if flag_arithmetic_progression == True:
+    else:
+        break
+if flag_arithmetic_progression:
     print('Является арифметической прогрессией')
 else:
     print('Не является арифметической прогрессией')
+
 
 
 # 27) Определить, в какой степени входит число 3 в разложение на простые множители
