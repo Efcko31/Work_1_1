@@ -394,12 +394,9 @@ def error_checking(n):
             return int(n)
 n = error_checking(input())
 total_3 = 0
-while n >= 3:
-    if n % 3 == 0:
-        n = n // 3
-        total_3 += 1
-    else:
-        n = n / n
+while n % 3 == 0:
+    n = n // 3
+    total_3 += 1
 print(total_3)
 
 
