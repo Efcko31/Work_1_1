@@ -349,25 +349,34 @@ def error_checking(n):
         else:
             return float(n)
 
-user_number = 1
-first_number = error_checking(input())
-second_number = error_checking(input())
-difference = first_number - second_number
-flag_arithmetic_progression = True
-
-while user_number != 0:
+user_number = error_checking(input())
+if user_number != 0:
+    first_number = user_number
     user_number = error_checking(input())
+    
     if user_number != 0:
-        first_number = user_number
-        first_number, second_number = second_number, first_number
-        if first_number - second_number != difference:
-            flag_arithmetic_progression = False
+        second_number = user_number
+        difference = first_number - second_number
+        flag_arithmetic_progression = True
+        
+        while user_number != 0:
+            user_number = error_checking(input())
+            if user_number != 0:
+                first_number = user_number
+                first_number, second_number = second_number, first_number
+                if first_number - second_number != difference:
+                    flag_arithmetic_progression = False
+            else:
+                break
+                
+        if flag_arithmetic_progression:
+            print('Является арифметической прогрессией')
+        elif not flag_arithmetic_progression:
+            print('Не является арифметической прогрессией')
     else:
-        break
-if flag_arithmetic_progression:
-    print('Является арифметической прогрессией')
+        print('NOTHING')
 else:
-    print('Не является арифметической прогрессией')
+    print('NOTHING')
 
 
 
