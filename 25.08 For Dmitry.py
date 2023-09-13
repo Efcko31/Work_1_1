@@ -95,7 +95,6 @@ while number_2 < b:
 
 if number_1 == a and number_2 == b:
     print('Yes')
-
 else:
     print('NO')
 
