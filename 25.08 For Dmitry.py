@@ -415,11 +415,15 @@ print(*answer, sep='')
 # Если число цифр нечётно, вывести среднюю цифру.
 
 n = list(input())
-total = len(n)
+total = 0
 answer = 0
+
+for i in range(len(n)):
+    total += 1
+
 if total % 2 == 0:
     print('Четное число цифр')
 else:
     answer = n[(total - 1) // 2]
-    print('Четное число цифр')
+    print('Нечётное число цифр')
     print('Средняя цифра:', answer)
