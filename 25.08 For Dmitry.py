@@ -382,19 +382,22 @@ else:
 
 # 27) Определить, в какой степени входит число 3 в разложение на простые множители
 # натурального числа n.
-
-n = int(input())
+def error_checking(n):
+    while n:
+        if not n.isdigit():
+            if not n[1::].isdigit():
+                print('ОШИБКА! Введите натуральное число!')
+                n = input()
+            else:
+                return int(n)
+        else:
+            return int(n)
+n = error_checking(input())
 total_3 = 0
-while n > 3:
+while n >= 3:
     if n % 3 == 0:
         n = n // 3
         total_3 += 1
-    elif n % 2 == 0:
-        n = n // 2
-    elif n % 5 == 0:
-        n = n // 5
-    elif n % 7 == 0:
-        n = n // 7
     else:
         n = n / n
 print(total_3)
