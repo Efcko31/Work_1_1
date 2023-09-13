@@ -201,11 +201,11 @@ print(answer)
 # 12) С клавиатуры вводятся целые числа. Признак конца ввода — ноль.
 # Определить количество введённых нечётных чисел после последнего отрицательного.
 
-user_number = 1
+user_number = int(input())
 total_number_for_answer = 0
 counter_on_off = True
 while user_number != 0:
-    
+
     user_number = int(input())
     if not counter_on_off and user_number < 0:
         counter_on_off = True
@@ -259,7 +259,7 @@ def error_checking(n):
         else:
             return int(n)
 
-user_number = 1
+user_number = error_checking(input())
 flag_negative_number = False
 answer_for_number = 'NOTHING'
 
